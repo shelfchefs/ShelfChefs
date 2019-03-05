@@ -24,10 +24,7 @@ label {
     color: #34495e;
 }
 
-.pure-img-responsive {
-    max-width: 100%;
-    height: auto;
-}
+
 
 /*
  * -- LAYOUT STYLES --
@@ -71,7 +68,7 @@ label {
  * I want my pure-button elements to look a little different
  */
 .pure-button {
-    background-color: #1f8dd6;
+    background-color: #601866;
     color: white;
     padding: 0.5em 2em;
     border-radius: 5px;
@@ -96,13 +93,13 @@ a.pure-button-primary {
     box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
 }
 .home-menu {
-    background: #2d3e50;
+    background: #fcfcff;
 }
 .pure-menu.pure-menu-fixed {
     /* Fixed menus normally have a border at the bottom. */
     border-bottom: none;
     /* I need a higher z-index here because of the scroll-over effect. */
-    z-index: 4;
+    z-index: 5;
 }
 
 .home-menu .pure-menu-heading {
@@ -126,32 +123,48 @@ a.pure-button-primary {
 }
 
 
-/*
- * -- SPLASH STYLES --
- * This is the blue top section that appears on the page.
- */
-
 .splash-container {
-    background: #1f8dd6;
-    z-index: 1;
+    background: url(https://static1.squarespace.com/static/5af238f12487fd07e16eed12/t/5afbf48df950b71b08e25e36/1526461696666/veggies%2Bwood%2Bbackground.jpg?format=1500w) no-repeat center center fixed;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     overflow: hidden;
-    /* The following styles are required for the "scroll-over" effect */
     width: 100%;
     height: 88%;
     top: 0;
     left: 0;
     position: fixed !important;
+
 }
 
 .splash {
     /* absolute center .splash within .splash-container */
-    width: 80%;
+    width: 60%;
     height: 50%;
     margin: auto;
     position: absolute;
     top: 100px; left: 0; bottom: 0; right: 0;
     text-align: center;
     text-transform: uppercase;
+
+}
+.blur {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/opacity/see-through */
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    border: 3px solid #706f6f52;
+    position: relative;
+    margin: auto;
+    width: 80%;
+  }
+
+
+.pure-img-responsive {
+    max-width: 100%;
+    position: relative;
+    height: auto;
 }
 
 /* This is the main heading that appears on the blue section */
@@ -183,7 +196,7 @@ a.pure-button-primary {
     top: 87%;
     width: 100%;
     min-height: 12%;
-    z-index: 2;
+    z-index: 4;
     background: white;
 
 }
@@ -216,7 +229,7 @@ a.pure-button-primary {
 
 /* This is the class used for the dark-background areas. */
 .ribbon {
-    background: #2d3e50;
+    background: #0c1c2c;
     color: #aaa;
 }
 
