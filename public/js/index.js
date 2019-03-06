@@ -1,99 +1,75 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
-
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  }
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyCy-CTcLPsk8f7Q_tTfJ3S3Q_MuHOLLl-k",
+  authDomain: "shelfchef-f0eb0.firebaseapp.com",
+  databaseURL: "https://shelfchef-f0eb0.firebaseio.com",
+  projectId: "shelfchef-f0eb0",
+  storageBucket: "shelfchef-f0eb0.appspot.com",
+  messagingSenderId: "292410947279"
 };
+firebase.initializeApp(config);
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+(function () {
+  //Login Button
+  $("#login-btn").on("click", function (event) {
+    event.preventDefault();
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
+    // Grabs user input
+    var email = $("#email").val().trim();
+    var password = $("#password").val().trim();
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
-
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
-
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
-
-  API.saveExample(example).then(function() {
-    refreshExamples();
+    if (!email || !password) {
+      $('#alertModalBody').text('Email and password required');
+      $('#alertModal').modal('show');
+      return;
+    }
+    //Sign in user
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch(function (error) {
+        //Handle Errors here.
+        $('#alertModalBody').text('Invalid email or password');
+        $('#alertModal').modal('show');
+        console.log('signIn error', error);
+        return;
+      });
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+  //Create Account Button
+  $("#create-btn").on("click", function (event) {
+    event.preventDefault();
 
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
+    // Grabs user input
+    var email = $("#email").val().trim();
+    var password = $("#password").val().trim();
+
+
+    if (!email || !password) {
+      $('#alertModalBody').text('Email and password required to create an account.');
+      $('#alertModal').modal('show');
+      return;
+    }
+
+    //Create user
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .catch(function (error) {
+        console.log('register error', error);
+        if (error.code === 'auth/email-already-in-use') {
+          $('#alertModalBody').text("This email is already in use. Log in or try to register another email.");
+          $('#alertModal').modal('show');
+        } else if (error.code === 'auth/weak-password') {
+          $('#alertModalBody').text("Password requires at least 6 characters");
+          $('#alertModal').modal('show');
+          return;
+        }
+      });
   });
-};
 
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+  //Listen to auth state changes
+  firebase.auth().onAuthStateChanged(function (user) {
+    console.log("logged in", user);
+    if (user) {
+      document.location.href = "main.html";
+    }
+  });
+})();
