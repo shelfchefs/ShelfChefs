@@ -1,4 +1,4 @@
-var db = require("../models/pantry.js");
+var db = require("../models");
 
 module.exports = function(app) {
   // Get all examples
@@ -22,3 +22,4 @@ module.exports = function(app) {
     });
   });
 };
+
