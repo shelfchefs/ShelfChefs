@@ -12,7 +12,7 @@ module.exports = function(app) {
   app.post("/api/ingredient", function(req, res) {
     console.log(req.body);
     db.Ingredient.create({
-      save: req.body.save
+      name: req.body.name
     }).then(function(dbIngredient) {
       res.json(dbIngredient);
     });
