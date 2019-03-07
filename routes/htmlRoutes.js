@@ -22,14 +22,21 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../index.html"));
   });
 
-  app.get("/ingredients", function(req, res) {
-    res.sendFile(path.join(__dirname, "../ingredients.html"));
+  app.get("/main", function(req, res) {
+    res.sendFile(path.join(__dirname, "../main.html"));
   });
 
-  app.get("/recipes", function(req, res) {
-    res.sendFile(path.join(__dirname, "../recipes.html"));
+  app.get("/login", function(req, res) {
+    res.sendFile(path.join(__dirname, "../login.html"));
   });
 
+  app.get("/contact", function(req, res) {
+    res.sendFile(path.join(__dirname, "../contact.html"));
+  });
+
+  app.get("/about", function(req, res) {
+    res.sendFile(path.join(__dirname, "../about.html"));
+  });
 
   // If no matching route is found default
 
