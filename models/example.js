@@ -1,7 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
   var Ingredient = sequelize.define("Ingredient", {
-    text: DataTypes.STRING,
-    description: DataTypes.TEXT
+    save: {
+    text: DataTypes.TEXT,
+    allowNull: false,
+    validate: {
+      len: [1]
+    }
+    }
   });
+
   return Ingredient;
 };

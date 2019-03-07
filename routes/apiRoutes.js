@@ -10,7 +10,10 @@ module.exports = function(app) {
 
   // Create a new Ingredient
   app.post("/api/ingredient", function(req, res) {
-    db.Ingredient.create(req.body).then(function(dbIngredient) {
+    console.log(req.body);
+    db.Ingredient.create({
+      save: req.body.save
+    }).then(function(dbIngredient) {
       res.json(dbIngredient);
     });
   });
