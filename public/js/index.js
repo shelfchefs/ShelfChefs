@@ -11,7 +11,7 @@ firebase.initializeApp(config);
 
 (function () {
   //Login Button
-  $("#login-btn").on("click", function (event) {
+  $("#login").on("click", function (event) {
     event.preventDefault();
 
     // Grabs user input
@@ -36,7 +36,7 @@ firebase.initializeApp(config);
 
 
   //Create Account Button
-  $("#create-btn").on("click", function (event) {
+  $("#create").on("click", function (event) {
     event.preventDefault();
 
     // Grabs user input
