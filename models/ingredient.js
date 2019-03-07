@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Ingredient = sequelize.define("Ingredient", {
     save: {
-    text: DataTypes.TEXT,
+    type: DataTypes.TEXT,
     allowNull: false,
     validate: {
       len: [1]
