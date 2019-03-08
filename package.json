@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/shelfchefs/ShelfChefs#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
