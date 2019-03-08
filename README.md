@@ -11,12 +11,6 @@ ShelfChef is a website designed to allow users to search for recipes based off i
 
 ## Authors
 
-* **Cisco** - 
+* **Cisco**
 * **Joshua**
 * **Marissa**
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
