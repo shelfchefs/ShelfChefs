@@ -22,8 +22,9 @@ function displayResult(object) {
                                 // "<div class = 'collapse resultCollapse' id = 'collapse-result" + searchResults.hits.indexOf(object) +"'>" +
                                    
                                          +
-                                        "<button class='button-choose pure-button'"+"<a href = " + object.recipe.url + "</a>" + "'>'" + 'Take me to recipe!'+"</button>"+
-                                     +
+                                         "<div class = 'card card-body'>" +
+                                         "<a href = " + object.recipe.url + " target = '_/blank'>Take me to recipe! " +
+                                     "</div>" +
                                 "</div>"
                             )
 };
@@ -32,7 +33,7 @@ function displayResult(object) {
 //click event listener for search button
 $go.click(function(event){
     event.preventDefault(); 
-    var queryURL = "https://api.edamam.com/search?app_id=f9f1544e&app_key=b4cfa069d95061e8028377fb6e951c1b&from=0&to=5&time=20&q=chicken+cheese+eggs&ingr=5";
+    var queryURL = "https://api.edamam.com/search?app_id=f9f1544e&app_key=b4cfa069d95061e8028377fb6e951c1b&from=0&to=6&time=20&q=chicken+cheese+eggs&ingr=5";
     $.ajax({
         url: queryURL,
         method: 'GET'
@@ -57,8 +58,8 @@ $(document).on("click", ".resultButton", function(event){
 });
 
 //click listener for the clear button
-$(document).on("click", $.clearButton, function(){
+$(document).on("click", $.clearButton, function(event){
     $recipeSearchResults.empty();
-})
+});
 
 });
